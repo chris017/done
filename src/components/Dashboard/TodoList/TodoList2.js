@@ -4,7 +4,7 @@ import useFetch from "react-fetch-hook";
 const ToDoList2 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("http://127.0.0.1:8080/api/todo/?name=" + data.toDo,
+    fetch("http://127.0.0.1:8080/api/doWeek/?name=" + data.toDo,
       {
         headers: {
           'Accept': 'application/json',
@@ -17,7 +17,7 @@ const ToDoList2 = () => {
   }
 
   function deleteTodo(id) {
-    fetch(`http://127.0.0.1:8080/api/todo/${id}`,
+    fetch(`http://127.0.0.1:8080/api/doWeek/${id}`,
       {
         method: "DELETE",
       })
@@ -25,14 +25,14 @@ const ToDoList2 = () => {
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/alltodos/");
+  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/doWeek/");
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
   const todos = data;
     return (
-        <div class="float-start d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <div class="form-container">
           <form name="todoForm" onSubmit={handleSubmit(onSubmit)}>
             <div class="list-group toDo">

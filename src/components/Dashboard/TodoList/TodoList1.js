@@ -4,7 +4,7 @@ import useFetch from "react-fetch-hook";
 const ToDoList1 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("http://127.0.0.1:8080/api/todo/?name=" + data.toDo,
+    fetch("http://127.0.0.1:8080/api/doToday/?name=" + data.toDo,
       {
         headers: {
           'Accept': 'application/json',
@@ -17,7 +17,7 @@ const ToDoList1 = () => {
   }
 
   function deleteTodo(id) {
-    fetch(`http://127.0.0.1:8080/api/todo/${id}`,
+    fetch(`http://127.0.0.1:8080/api/doToday/${id}`,
       {
         method: "DELETE",
       })
@@ -25,22 +25,22 @@ const ToDoList1 = () => {
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/alltodos/");
+  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/doToday/");
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
-  const todos = data;
+  const todosToday = data;
     return (
-        <div class="float-start d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="float-start d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <div class="form-container">
           <form name="todoForm" onSubmit={handleSubmit(onSubmit)}>
             <div class="list-group toDo">
-              {todos.map(todos => <label class="list-group-item d-flex gap-3 toDo">
+              {todosToday.map(todosToday => <label class="list-group-item d-flex gap-3 toDo">
                 <span class="pt-1 form-checked-content toDo">
-                  <strong>{todos.name}</strong>
+                  <strong>{todosToday.name}</strong>
                 </span>
-                <button onClick={() => deleteTodo(todos.id)} class="btn btn-outline-danger">Delete</button>
+                <button onClick={() => deleteTodo(todosToday.id)} class="btn btn-outline-danger">Delete</button>
               </label>)}
               <label style={{ margin: 10 }}>
                 <strong style={{ marginRight: 10 }}>Name:</strong>
