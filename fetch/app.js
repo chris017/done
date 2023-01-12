@@ -140,7 +140,7 @@ app.delete("/api/doMonth/:todoId", (req, res) => {
     }
 
     // Otherwise, remove the todo from the array and return a 200 response
-    doWeek.splice(todoIndex, 1);
+    doMonth.splice(todoIndex, 1);
     res.sendStatus(200);
 });
 

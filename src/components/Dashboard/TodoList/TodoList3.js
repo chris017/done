@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import useFetch from "react-fetch-hook";
 import './style.css'
 
-const ToDoList1 = () => {
+const ToDoList3 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("http://127.0.0.1:8080/api/doToday/?name=" + data.toDo,
+    fetch("http://127.0.0.1:8080/api/doMonth/?name=" + data.toDo,
       {
         headers: {
           'Accept': 'application/json',
@@ -18,7 +18,7 @@ const ToDoList1 = () => {
   }
 
   function deleteTodo(id) {
-    fetch(`http://127.0.0.1:8080/api/doToday/${id}`,
+    fetch(`http://127.0.0.1:8080/api/doMonth/${id}`,
       {
         method: "DELETE",
       })
@@ -26,23 +26,23 @@ const ToDoList1 = () => {
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/doToday/");
+  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/doMonth/");
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
-  const todosToday = data;
+  const todosMonth = data;
     return (
         <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
           <div class="form-container">
           <form name="todoForm" onSubmit={handleSubmit(onSubmit)}>
             <div class="list-group toDo">
-            <h2 class="toDoHeading">Today</h2>
-              {todosToday.map(todosToday => <label class="list-group-item d-flex gap-3">
+              <h2 class="toDoHeading">This Month</h2>
+              {todosMonth.map(todosMonth => <label class="list-group-item d-flex gap-3">
                 <span class="pt-1 form-checked-content">
-                  <strong>{todosToday.name}</strong>
+                  <strong>{todosMonth.name}</strong>
                 </span>
-                <button onClick={() => deleteTodo(todosToday.id)} class="btn btn-outline-danger">Delete</button>
+                <button onClick={() => deleteTodo(todosMonth.id)} class="btn btn-outline-danger">Delete</button>
               </label>)}
               <label style={{ margin: 10 }}>
                 <strong style={{ marginRight: 10 }}>Name:</strong>
@@ -62,4 +62,4 @@ const ToDoList1 = () => {
     );
 }
 
-export default ToDoList1;
+export default ToDoList3;

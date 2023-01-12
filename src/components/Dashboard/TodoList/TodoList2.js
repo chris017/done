@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import useFetch from "react-fetch-hook";
+import './style.css'
 
 const ToDoList2 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,17 +31,18 @@ const ToDoList2 = () => {
     return <div>Is loading!</div>
   }
 
-  const todos = data;
+  const todosWeek = data;
     return (
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
           <div class="form-container">
           <form name="todoForm" onSubmit={handleSubmit(onSubmit)}>
             <div class="list-group toDo">
-              {todos.map(todos => <label class="list-group-item d-flex gap-3 toDo">
-                <span class="pt-1 form-checked-content toDo">
-                  <strong>{todos.name}</strong>
+              <h2 class="toDoHeading">This Week</h2>
+              {todosWeek.map(todosWeek => <label class="list-group-item d-flex gap-3">
+                <span class="pt-1 form-checked-content">
+                  <strong>{todosWeek.name}</strong>
                 </span>
-                <button onClick={() => deleteTodo(todos.id)} class="btn btn-outline-danger">Delete</button>
+                <button onClick={() => deleteTodo(todosWeek.id)} class="btn btn-outline-danger">Delete</button>
               </label>)}
               <label style={{ margin: 10 }}>
                 <strong style={{ marginRight: 10 }}>Name:</strong>

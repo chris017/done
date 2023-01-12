@@ -1,0 +1,11 @@
+.toDo {
+    border-style: solid;
+    --bs-list-group-border-color: none;
+    --bs-list-group-color: #0A3939;
+    color: #0A3939;
+}
+
+.toDoHeading {
+    text-align: center;
+    color: #0A3939;
+}

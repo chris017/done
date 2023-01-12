@@ -8,3 +8,7 @@
     --bs-nav-link-color: white !important;
     --bs-nav-link-hover-color: #D8D2B9
 }
+
+.logo {
+    color: #D8D2B9;
+}
