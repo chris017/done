@@ -7,7 +7,7 @@ import useFetch from "react-fetch-hook";
 function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("http://127.0.0.1:8080/api/employee/?name=" + data.toDo,
+    fetch("http://127.0.0.1:8080/api/todo/?name=" + data.toDo,
       {
         headers: {
           'Accept': 'application/json',
@@ -20,7 +20,7 @@ function App() {
   }
 
   function deleteTodo(id) {
-    fetch(`http://127.0.0.1:8080/api/employee/${id}`,
+    fetch(`http://127.0.0.1:8080/api/todo/${id}`,
       {
         method: "DELETE",
       })
@@ -28,7 +28,7 @@ function App() {
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/employees/");
+  const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/alltodos/");
   if (isLoading) {
     return <div>Is loading!</div>
   }
