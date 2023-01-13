@@ -84,7 +84,7 @@ app.delete("/api/doToday/:todoId", (req, res) => {
 });
 
 
-// Add do This Week
+// Add do This Week to api
 
 let doWeek = [{ id: "2", name: "WebDev" }]
 
