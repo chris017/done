@@ -144,4 +144,36 @@ app.delete("/api/doMonth/:todoId", (req, res) => {
     res.sendStatus(200);
 });
 
+// Add all Done todos in one List
+
+let doDone = []
+
+app.post("/api/doDone", (req, res) => {
+    const id = Math.random().toString(36).substr(2, 9);
+
+    // Add the new todo item to the array
+    doDone.push({ id: id, name: req.query.name });
+    res.sendStatus(200);
+})
+
+app.get("/api/doDone", (req, res) => {
+    res.json(doDone);
+});
+
+app.delete("/api/doDone/:todoId", (req, res) => {
+    // Find the index of the todo with the matching id
+    const todoIndex = doDone.findIndex(a => a.id === req.params.todoId);
+
+    // If no todo was found, return a 404 response
+    if (todoIndex === -1) {
+        res.sendStatus(404);
+        return;
+    }
+
+    // Otherwise, remove the todo from the array and return a 200 response
+    doDone.splice(todoIndex, 1);
+    res.sendStatus(200);
+});
+
 module.exports = app;
+

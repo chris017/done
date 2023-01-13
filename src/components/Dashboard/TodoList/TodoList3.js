@@ -26,6 +26,19 @@ const ToDoList3 = () => {
       .catch(function (res) { console.log(res); });
   }
 
+  function onDone(data) {
+    fetch("http://127.0.0.1:8080/api/doDone/?name=" + data,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+      })
+      .then(function (res) { window.location.reload(); })
+      .catch(function (res) { console.log(res); });
+  }
+
   const { isLoading, data } = useFetch("http://127.0.0.1:8080/api/doMonth/");
   if (isLoading) {
     return <div>Is loading!</div>
@@ -42,11 +55,12 @@ const ToDoList3 = () => {
                 <span class="pt-1 form-checked-content">
                   <strong>{todosMonth.name}</strong>
                 </span>
+                <button onClick={() => {onDone(todosMonth.name); deleteTodo(todosMonth.id)}} type="submit" class="btn btn-outline-success">Done</button>
                 <button onClick={() => deleteTodo(todosMonth.id)} class="btn btn-outline-danger">Delete</button>
               </label>)}
               <label style={{ margin: 10 }}>
                 <strong style={{ marginRight: 10 }}>Name:</strong>
-                <input {...register("toDo", { required: true })} placeholder="Your ToDo"
+                <input {...register("toDo", { required: true })} placeholder="Your ToDo" maxlength="13"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
