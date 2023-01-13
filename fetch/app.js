@@ -21,7 +21,7 @@ let alltodos = [
 app.post("/api/todo", (req, res) => {
     const id = Math.random().toString(36).substr(2, 9);
 
-    // Add the new todo item to the array
+    // Add the new todo item to the api
     alltodos.push({ id: id, name: req.query.name });
     res.sendStatus(200);
 })
