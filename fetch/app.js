@@ -52,7 +52,9 @@ app.delete('/api/todo/:todoId', (req, res) => {
 
 //Do Today Todos added API call
 
-let doToday = []
+let doToday = [
+    { id: "1", name: "Homework" }
+]
 
 app.post("/api/doToday", (req, res) => {
     const id = Math.random().toString(36).substr(2, 9);
@@ -84,7 +86,7 @@ app.delete("/api/doToday/:todoId", (req, res) => {
 
 // Add do This Week
 
-let doWeek = []
+let doWeek = [{ id: "2", name: "WebDev" }]
 
 app.post("/api/doWeek", (req, res) => {
     const id = Math.random().toString(36).substr(2, 9);
@@ -115,7 +117,7 @@ app.delete("/api/doWeek/:todoId", (req, res) => {
 
 // Add do This Month
 
-let doMonth = []
+let doMonth = [{ id: "3", name: "ExamPrep" }]
 
 app.post("/api/doMonth", (req, res) => {
     const id = Math.random().toString(36).substr(2, 9);
@@ -146,7 +148,7 @@ app.delete("/api/doMonth/:todoId", (req, res) => {
 
 // Add all Done todos in one List
 
-let doDone = []
+let doDone = [{ id: "4", name: "Presentation" }]
 
 app.post("/api/doDone", (req, res) => {
     const id = Math.random().toString(36).substr(2, 9);

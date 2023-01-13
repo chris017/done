@@ -3,6 +3,7 @@
     --bs-list-group-border-color: none;
     --bs-list-group-color: #0A3939;
     color: #0A3939;
+    --bs-list-group-bg: white;
 }
 
 .toDoHeading {
@@ -12,4 +13,12 @@
 
 .toDoDone {
     width: 1080px;
+}
+
+.toDoLabel {
+    margin: 10px;
+}
+
+.toDoStrong {
+    margin-right: 10px;
 }

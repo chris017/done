@@ -1,0 +1,32 @@
+.bgSideBar {
+    background-color: #0A3939 !important;
+    color: white;
+    height: 978px;
+}
+
+.nav {
+    --bs-nav-link-color: #D8D2B9 !important;
+    --bs-nav-link-hover-color: white;
+}
+
+.logo {
+    border-bottom: 0.5rem solid #D8D2B9;
+    color: #D8D2B9;
+    text-align: left;
+}
+
+.navEntrySideMenu {
+    margin-top: 10%;
+    border-bottom: solid #D8D2B9;
+    border-top: solid #D8D2B9;    
+}
+
+.dashboardIcon {
+    margin-right: 10%;
+}
+
+.btnNav {
+    margin-top: 40%;
+    --bs-btn-color: #D8D2B9;
+    --bs-btn-border-color: #D8D2B9;
+}

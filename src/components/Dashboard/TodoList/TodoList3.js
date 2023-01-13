@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useFetch from "react-fetch-hook";
-import './style.css'
+import './todoLists.css'
 
 const ToDoList3 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -58,8 +58,8 @@ const ToDoList3 = () => {
                 <button onClick={() => {onDone(todosMonth.name); deleteTodo(todosMonth.id)}} type="submit" class="btn btn-outline-success">Done</button>
                 <button onClick={() => deleteTodo(todosMonth.id)} class="btn btn-outline-danger">Delete</button>
               </label>)}
-              <label style={{ margin: 10 }}>
-                <strong style={{ marginRight: 10 }}>Name:</strong>
+              <label class="toDoLabel">
+                <strong class="toDoStrong">Name:</strong>
                 <input {...register("toDo", { required: true })} placeholder="Your ToDo" maxlength="13"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
@@ -67,7 +67,7 @@ const ToDoList3 = () => {
                     }
                   }}
                 />
-                <button type="submit" class="btn myBtn addBtn">Add</button>
+                <button type="submit" class="btn">Add</button>
               </label>
             </div>
           </form>

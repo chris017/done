@@ -1,6 +1,5 @@
-import { useForm } from "react-hook-form";
 import useFetch from "react-fetch-hook";
-import './style.css'
+import './todoLists.css'
 
 const TodoDoneList = () => {
   function deleteTodo(id) {
