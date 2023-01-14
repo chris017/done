@@ -75,6 +75,17 @@ app.put("/api/alltodos/:todoId", (req, res) => {
     res.sendStatus(200);
 });
 
+app.get("/api/search", (req, res) => {
+    const searchInput = req.query.name;
+    const foundTodos = allTodos.filter(todo => todo.name.toLowerCase().includes(searchInput.toLowerCase()));
+    if (foundTodos.length > 0) {
+        res.json(foundTodos);
+    } else {
+        res.sendStatus(404);
+    }
+});
+
+
 
 module.exports = app;
 

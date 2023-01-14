@@ -18,7 +18,7 @@
 .navEntrySideMenu {
     margin-top: 10%;
     border-bottom: solid #D8D2B9;
-    border-top: solid #D8D2B9;    
+    border-top: solid #D8D2B9;
 }
 
 .dashboardIcon {
@@ -29,4 +29,19 @@
     margin-top: 40%;
     --bs-btn-color: #D8D2B9;
     --bs-btn-border-color: #D8D2B9;
+}
+
+.profilePic {
+    width: 150px !important;
+    height: 150px
+}
+
+.searchIcon {
+    margin-right: 10%;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.searchIconBottm {
+    margin-bottom: 10%;
 }
