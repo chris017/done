@@ -5,46 +5,50 @@ import './todoLists.css'
 const ToDoList2 = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("/api/doWeek/?name=" + data.toDo,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
+    fetch("/api/alltodos?name=" + data.toDo, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.toDo,
+        type: "week"
       })
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
 
   function deleteTodo(id) {
-    fetch(`/api/doWeek/${id}`,
-      {
-        method: "DELETE",
-      })
+    fetch(`/api/alltodos/${id}`, {
+      method: "DELETE"
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
 
-  function onDone(data) {
-    fetch("/api/doDone/?name=" + data,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
+
+  function onDone(id, name) {
+    fetch(`/api/alltodos/${id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        type: "done"
       })
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("/api/doWeek/");
+  const { isLoading, data } = useFetch("/api/alltodos");
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
-  const todosWeek = data;
+  const todosWeek = data.filter(todo => todo.type === "week");
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
       <div class="form-container">
@@ -55,7 +59,7 @@ const ToDoList2 = () => {
               <span class="pt-1 form-checked-content">
                 <strong>{todosWeek.name}</strong>
               </span>
-              <button onClick={() => { onDone(todosWeek.name); deleteTodo(todosWeek.id) }} type="submit" class="btn btn-outline-success">Done</button>
+              <button onClick={() => onDone(todosWeek.id, todosWeek.name)} type="submit" class="btn btn-outline-success">Done</button>
               <button onClick={() => deleteTodo(todosWeek.id)} class="btn btn-outline-danger">Delete</button>
             </label>)}
             <label class="toDoLabel">

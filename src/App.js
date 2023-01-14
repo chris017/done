@@ -7,6 +7,7 @@ import ToDoList1 from './components/Dashboard/TodoList/TodoList1';
 import ToDoList2 from './components/Dashboard/TodoList/TodoList2';
 import ToDoList3 from './components/Dashboard/TodoList/TodoList3';
 
+
 function App() {
   return (
     <div class="container-fluid">
@@ -22,7 +23,7 @@ function App() {
         </main>
       </div>
     </div>
-    );
+  );
 }
 
 export default App;

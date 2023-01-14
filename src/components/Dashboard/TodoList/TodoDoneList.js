@@ -3,7 +3,7 @@ import './todoLists.css'
 
 const TodoDoneList = () => {
   function deleteTodo(id) {
-    fetch(`api/doDone/${id}`,
+    fetch(`api/alltodos/${id}`,
       {
         method: "DELETE",
       })
@@ -11,12 +11,13 @@ const TodoDoneList = () => {
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("/api/doDone/");
+  const { isLoading, data } = useFetch("/api/alltodos");
+
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
-  const doDone = data;
+  const doDone = data.filter(todo => todo.type === "done");
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
       <div class="form-container">

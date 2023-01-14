@@ -5,46 +5,52 @@ import './todoLists.css'
 const ToDoList1 = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
-    fetch("/api/doToday/?name=" + data.toDo,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
+    fetch("/api/alltodos?name=" + data.toDo, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.toDo,
+        type: "today"
       })
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
+
 
   function deleteTodo(id) {
-    fetch(`/api/doToday/${id}`,
-      {
-        method: "DELETE",
-      })
+    fetch(`/api/alltodos/${id}`, {
+      method: "DELETE"
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
 
-  function onDone(data) {
-    fetch("/api/doDone/?name=" + data,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
+  function onDone(id, name) {
+    fetch(`/api/alltodos/${id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        type: "done"
       })
+    })
       .then(function (res) { window.location.reload(); })
       .catch(function (res) { console.log(res); });
   }
 
-  const { isLoading, data } = useFetch("/api/doToday/");
+  const { isLoading, data } = useFetch("/api/alltodos");
+
   if (isLoading) {
     return <div>Is loading!</div>
   }
 
-  const todosToday = data;
+  const todosToday = data.filter(todo => todo.type === "today");
+
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
       <div class="form-container">
@@ -55,7 +61,7 @@ const ToDoList1 = () => {
               <span class="pt-1 form-checked-content">
                 <strong>{todosToday.name}</strong>
               </span>
-              <button onClick={() => { onDone(todosToday.name); deleteTodo(todosToday.id) }} type="submit" class="btn btn-outline-success">Done</button>
+              <button onClick={() => onDone(todosToday.id, todosToday.name)} type="submit" class="btn btn-outline-success">Done</button>
               <button onClick={() => deleteTodo(todosToday.id)} class="btn btn-outline-danger">Delete</button>
             </label>)}
             <label class="toDoLabel">
