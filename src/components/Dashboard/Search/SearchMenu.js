@@ -20,8 +20,7 @@ const SearchMenu = () => {
 
     const filteredTodos = data.filter(todo =>
         todo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        todo.type.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        todo.type.includes(user.name)
+        todo.type.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
