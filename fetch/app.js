@@ -1,6 +1,9 @@
+
+
 const express = require('express');
 const app = express();
 const path = require('path');
+
 
 
 app.use(function (req, res, next) {
@@ -17,15 +20,12 @@ app.get('/', (req, res) => {
 
 
 const bodyParser = require("body-parser");
+const { default: userEvent } = require('@testing-library/user-event');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 let allTodos = [
-    { id: "1", name: "Example Todo", type: "today" },
-    { id: "2", name: "Homework", type: "week" },
-    { id: "3", name: "WebDev", type: "month" },
-    { id: "4", name: "Done", type: "done" }
 ]
 
 app.get("/api/alltodos", (req, res) => {

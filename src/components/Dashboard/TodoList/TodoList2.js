@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import useFetch from "react-fetch-hook";
 import './todoLists.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ToDoList2 = () => {
+  const { user } = useAuth0();
   const { register, handleSubmit, formState: { errors } } = useForm();
   function onSubmit(data) {
     fetch("/api/alltodos?name=" + data.toDo, {
@@ -12,7 +14,7 @@ const ToDoList2 = () => {
       },
       body: JSON.stringify({
         name: data.toDo,
-        type: "week"
+        type: "week" + user.name
       })
     })
       .then(function (res) { window.location.reload(); })
@@ -48,7 +50,7 @@ const ToDoList2 = () => {
     return <div>Is loading!</div>
   }
 
-  const todosWeek = data.filter(todo => todo.type === "week");
+  const todosWeek = data.filter(todo => todo.type === "week" + user.name);
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
       <div class="form-container">

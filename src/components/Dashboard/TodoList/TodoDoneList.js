@@ -1,7 +1,9 @@
 import useFetch from "react-fetch-hook";
 import './todoLists.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const TodoDoneList = () => {
+  const { user } = useAuth0();
   function deleteTodo(id) {
     fetch(`api/alltodos/${id}`,
       {
@@ -23,7 +25,7 @@ const TodoDoneList = () => {
       <div class="form-container">
         <form name="todoForm" class="toDoDone">
           <div class="list-group toDo">
-            <h2 class="toDoHeading">Already Done</h2>
+            <h2 class="toDoHeading">Completed Tasks</h2>
             {doDone && doDone.map(doDone => <label class="list-group-item d-flex gap-3">
               <span class="pt-1 form-checked-content">
                 <strong>{doDone.name}</strong>

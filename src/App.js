@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './App.css'
 import React from "react";
-import SearchField from './components/Dashboard/Search/SearchMenu';
 import SideMenu from './components/Dashboard/SideMenu/SideMenu';
 import TodoDoneList from './components/Dashboard/TodoList/TodoDoneList';
 import ToDoList1 from './components/Dashboard/TodoList/TodoList1';
@@ -32,7 +31,7 @@ function App() {
           </main>
         </div>
       }
-      <div>
+      <div class="centered">
         {!isAuthenticated && <h1>DONE</h1>}
         {error && <p>Authentication Error</p>}
         {!error && isLoading && <p>Loading...</p>}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useFetch from "react-fetch-hook";
-const { useAuth0 } = require("@auth0/auth0-react");
+import './searchTodos.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SearchMenu = () => {
     const { user } = useAuth0();
@@ -19,11 +20,12 @@ const SearchMenu = () => {
 
     const filteredTodos = data.filter(todo =>
         todo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        todo.type.toLowerCase().includes(searchTerm.toLowerCase())
+        todo.type.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        todo.type.includes(user.name)
     );
 
     return (
-        <div>
+        <div class="searchField">
             <input type="text" placeholder="Search Todos" onChange={handleSearchChange} />
             <div className="search-result">
                 {filteredTodos.map((todo) => (
