@@ -1,42 +1,56 @@
 import useFetch from "react-fetch-hook";
-import './todoLists.css'
+import "./todoLists.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TodoDoneList = () => {
   const { user } = useAuth0();
   function deleteTodo(id) {
-    fetch(`api/alltodos/${id}`,
-      {
-        method: "DELETE",
+    fetch(`api/alltodos/${id}`, {
+      method: "DELETE",
+    })
+      .then(function (res) {
+        window.location.reload();
       })
-      .then(function (res) { window.location.reload(); })
-      .catch(function (res) { console.log(res); });
+      .catch(function (res) {
+        console.log(res);
+      });
   }
 
   const { isLoading, data } = useFetch("/api/alltodos");
 
   if (isLoading) {
-    return <div>Is loading!</div>
+    return <div>Is loading!</div>;
   }
 
-  const doDone = data.filter(todo => todo.type === "done");
+  const doDone = data.filter(
+    (todo) => todo.type === "done" && todo.user === user.name
+  );
+
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
       <div class="form-container">
         <form name="todoForm" class="toDoDone">
           <div class="list-group toDo">
             <h2 class="toDoHeading">Completed Tasks</h2>
-            {doDone && doDone.map(doDone => <label class="list-group-item d-flex gap-3">
-              <span class="pt-1 form-checked-content">
-                <strong>{doDone.name}</strong>
-              </span>
-              <button onClick={() => deleteTodo(doDone.id)} class="btn btn-outline-danger">Delete</button>
-            </label>)}
+            {doDone &&
+              doDone.map((doDone) => (
+                <label class="list-group-item d-flex gap-3">
+                  <span class="pt-1 form-checked-content">
+                    <strong>{doDone.name}</strong>
+                  </span>
+                  <button
+                    onClick={() => deleteTodo(doDone.id)}
+                    class="btn btn-outline-danger"
+                  >
+                    Delete
+                  </button>
+                </label>
+              ))}
           </div>
         </form>
-      </div >
+      </div>
     </div>
   );
-}
+};
 
 export default TodoDoneList;
