@@ -10,6 +10,7 @@ const ToDoList1 = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // function to handle the form submission. It makes a POST request to the server to add a new ToDo
   function onSubmit(data) {
     fetch("/api/alltodos?name=" + data.toDo, {
       method: "POST",
@@ -19,17 +20,18 @@ const ToDoList1 = () => {
       body: JSON.stringify({
         name: data.toDo,
         type: "today",
-        user: user.name,
+        user: user.name, // the user's name is sent with the request
       }),
     })
       .then(function (res) {
-        window.location.reload();
+        window.location.reload(); // reload the page after a successful request
       })
       .catch(function (res) {
         console.log(res);
       });
   }
 
+  // function to handle the deletion of a ToDo
   function deleteTodo(id) {
     fetch(`/api/alltodos/${id}`, {
       method: "DELETE",
@@ -42,6 +44,7 @@ const ToDoList1 = () => {
       });
   }
 
+  // function to handle the onDone entrys
   function onDone(id, name) {
     fetch(`/api/alltodos/${id}`, {
       method: "PUT",
@@ -62,12 +65,13 @@ const ToDoList1 = () => {
       });
   }
 
-  const { isLoading, data } = useFetch("/api/alltodos");
+  const { isLoading, data } = useFetch("/api/alltodos"); // Fetch the data from the backend
 
   if (isLoading) {
     return <div>Is loading!</div>;
   }
 
+  // Filter the todos to only show the ones that are "today" and belong to the current user
   const todosToday = data.filter(
     (todo) => todo.type === "today" && todo.user === user.name
   );

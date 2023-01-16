@@ -26,7 +26,7 @@ const { default: userEvent } = require("@testing-library/user-event");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let allTodos = [];
+let allTodos = []; //new array for all users
 
 app.get("/api/alltodos", (req, res) => {
   if (req.query.type) {
@@ -36,9 +36,9 @@ app.get("/api/alltodos", (req, res) => {
   }
 });
 
-app.get("/api/alltodos?type=all", (req, res) => {
+/*app.get("/api/alltodos?type=all", (req, res) => {
   res.json(allTodos);
-});
+});*/
 
 app.delete("/api/alltodos/:todoId", (req, res) => {
   // Find the index of the todo with the matching id
@@ -59,7 +59,7 @@ app.post("/api/alltodos", (req, res) => {
   const { name, type } = req.body;
   const id = Math.random().toString(36).substr(2, 9);
 
-  allTodos.push({ id, name, type, user: req.body.user });
+  allTodos.push({ id, name, type, user: req.body.user }); //adding also user.name from frontend
   res.sendStatus(200);
 });
 
@@ -69,20 +69,8 @@ app.put("/api/alltodos/:todoId", (req, res) => {
     res.sendStatus(404);
     return;
   }
-  allTodos[todoIndex].type = "done";
+  allTodos[todoIndex].type = "done"; //chance type to done for done TodoBox
   res.sendStatus(200);
-});
-
-app.get("/api/search", (req, res) => {
-  const searchInput = req.query.name;
-  const foundTodos = allTodos.filter((todo) =>
-    todo.name.toLowerCase().includes(searchInput.toLowerCase())
-  );
-  if (foundTodos.length > 0) {
-    res.json(foundTodos);
-  } else {
-    res.sendStatus(404);
-  }
 });
 
 module.exports = app;

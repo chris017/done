@@ -10,6 +10,7 @@ const ToDoList2 = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // function to handle the form submission. It makes a POST request to the server to add a new ToDo
   function onSubmit(data) {
     fetch("/api/alltodos?name=" + data.toDo, {
       method: "POST",
@@ -19,7 +20,7 @@ const ToDoList2 = () => {
       body: JSON.stringify({
         name: data.toDo,
         type: "week",
-        user: user.name,
+        user: user.name, // the user's name is sent with the request
       }),
     })
       .then(function (res) {
@@ -67,6 +68,7 @@ const ToDoList2 = () => {
     return <div>Is loading!</div>;
   }
 
+  // Filter the todos to only show the ones that are "week" and belong to the current user
   const todosWeek = data.filter(
     (todo) => todo.type === "week" && todo.user === user.name
   );

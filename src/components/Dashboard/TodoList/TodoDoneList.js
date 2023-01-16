@@ -3,12 +3,16 @@ import "./todoLists.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TodoDoneList = () => {
+  // Get the user object from the Auth0 context
   const { user } = useAuth0();
+  // Function to handle the deletion of a todo item
   function deleteTodo(id) {
+    // Make a DELETE request to the backend to delete the todo item
     fetch(`api/alltodos/${id}`, {
       method: "DELETE",
     })
       .then(function (res) {
+        // Reload the page after successful deletion
         window.location.reload();
       })
       .catch(function (res) {
@@ -16,15 +20,19 @@ const TodoDoneList = () => {
       });
   }
 
+  // Fetch the data from the backend
   const { isLoading, data } = useFetch("/api/alltodos");
 
+  // If the data is still loading, show a loading message
   if (isLoading) {
     return <div>Is loading!</div>;
   }
 
+  // Filter the todos to only show the ones that are "done" and belong to the current user
   const doDone = data.filter(
     (todo) => todo.type === "done" && todo.user === user.name
   );
+  // Render the completed todo list
 
   return (
     <div class="col-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3">
