@@ -1,11 +1,11 @@
 # Done a WebApp programmed during my studies at DHBW
 
-### "As a student, we needed an app 
-### where we could sort and keep 
-### track of our upcoming tasks. 
-### So we thought we'd build one."
+### `"As a student, we needed an app 
+where we could sort and keep 
+track of our upcoming tasks. 
+So we thought we'd build one."
  
-### ~ Nik, Chris
+~ Nik, Chris
 
 <img width="1435" alt="Bildschirm­foto 2023-01-15 um 13 59 47" src="https://user-images.githubusercontent.com/28670581/213009305-6fc6f71c-b9a4-4ea5-a4cc-de26e67e0639.png">
 
@@ -37,4 +37,4 @@ Be sure you located in the react source folder cd /src/
 
 # For an depth informations
 
-### check out the presentation-done.html file
+### Check out the presentation-done.html file
