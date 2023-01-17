@@ -1,10 +1,14 @@
-<img width="1438" alt="Bildschirm­foto 2023-01-13 um 10 13 44" src="https://user-images.githubusercontent.com/28670581/212282819-13848641-966d-491a-b0de-3bab3cc9d699.png">
+<img width="1435" alt="Bildschirm­foto 2023-01-15 um 13 59 47" src="https://user-images.githubusercontent.com/28670581/213009305-6fc6f71c-b9a4-4ea5-a4cc-de26e67e0639.png">
+
+### Login made with Auth0
+
+Create an Auth0 Acc and provide your information in the .env file like the example below
 
 # Add .env file with following information
 
-### `REACT_APP_AUTH0_DOMAIN = dev-1ioqnz3ntswhuad3.us.auth0.com`
+### `REACT_APP_AUTH0_DOMAIN = YourAuth0Domain`
 
-### `REACT_APP_AUTH0_CLIENT_ID = qNGvjT8y39u3lMcfuXy5PFybkNGeiYCj`
+### `REACT_APP_AUTH0_CLIENT_ID = YourAuth0ClientID`
 
 # Perform an initial installation for all required dependencies
 
