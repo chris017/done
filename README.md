@@ -1,4 +1,4 @@
-### Done a WebApp programmed during my studies at dhbw to stay Productive
+# Done a WebApp programmed during my studies at DHBW
 
 "As a student, we needed an app where we could sort and keep track of our upcoming tasks. 
 So we thought we'd build one."
