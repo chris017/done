@@ -34,3 +34,5 @@ Be sure you located in the JS source folder cd /fetch/
 Be sure you located in the react source folder cd /src/
 
 ### `npm start`
+
+# For an in depth look at the Done app check out the presentation-done.html file
