@@ -1,6 +1,6 @@
-# Done a WebApp programmed during my studies at DHBW
+# Done a WebApp programmed during<br />my studies at DHBW
 
-"As a student, we needed an app where we could sort and keep track of our upcoming tasks. So we thought we'd build one."<br />~ Nik, Chris
+"As a student,<br />we needed an app where<br />we could sort and keep track<br />of our upcoming tasks.<br />So we thought we'd build one."<br />~ Nik, Chris
 
 <img width="1435" alt="Bildschirm­foto 2023-01-15 um 13 59 47" src="https://user-images.githubusercontent.com/28670581/213009305-6fc6f71c-b9a4-4ea5-a4cc-de26e67e0639.png">
 
